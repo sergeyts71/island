@@ -8,25 +8,20 @@ public class App {
 
         ExecutorService service = Executors.newCachedThreadPool();
 
-        for(int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
 
             service.submit(new Runnable() {
 
-                public void run() {
-
-                    IslandMap islandMap = new IslandMap();
-                    Report report = new Report();
-
-    //                System.out.println(islandMap.getCell0());
-                    islandMap.eat("Заяц");
-                    System.out.println(islandMap.getCell0());
-
-                }
-
-            });
-
-        }
-
+                               public void run() {
+                                   IslandMap islandMap = new IslandMap();
+                                   System.out.println(islandMap.getCell0());
+                                   for (int j = 0; j < 10; j++) {
+                                       islandMap.eat("Заяц");
+                                   }
+                                   System.out.println(islandMap.getCell0());
+                               }
+                           }
+            );
 //        MyRunnable myRunnable = new MyRunnable();
 //        Thread myThread = new Thread(myRunnable);
 //            myThread.start();
@@ -36,5 +31,6 @@ public class App {
 //            throw new RuntimeException(e);
 //        }
 //            myThread.stop();
+        }
     }
 }
