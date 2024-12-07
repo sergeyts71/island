@@ -1,4 +1,7 @@
-import entity.IslandMap;
+import entity.*;
+import herbivore.*;
+import plant.*;
+import predator.*;
 import simulation.*;
 import java.util.concurrent.*;
 import java.util.concurrent.TimeUnit;
@@ -6,31 +9,18 @@ import java.util.concurrent.TimeUnit;
 public class App {
     public static void main(String[] args) {
 
-        ExecutorService service = Executors.newCachedThreadPool();
+        {
 
-        for (int i = 0; i < 10; i++) {
+            // Creating a ScheduledThreadPoolExecutor object
+            ScheduledThreadPoolExecutor threadPool
+                    = new ScheduledThreadPoolExecutor(2);
 
-            service.submit(new Runnable() {
-
-                               public void run() {
-                                   IslandMap islandMap = new IslandMap();
-                                   System.out.println(islandMap.getCell0());
-                                   for (int j = 0; j < 10; j++) {
-                                       islandMap.eat("Заяц");
-                                   }
-                                   System.out.println(islandMap.getCell0());
-                               }
-                           }
-            );
-//        MyRunnable myRunnable = new MyRunnable();
-//        Thread myThread = new Thread(myRunnable);
-//            myThread.start();
-//        try {
-//            TimeUnit.SECONDS.sleep(5);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//            myThread.stop();
+            // Creating two Runnable objects
+            Runnable task1 = new Command("task1");
+            Runnable task2 = new Command("task2");
+            threadPool.schedule(task1, 1, TimeUnit.SECONDS);
+            threadPool.schedule(task2, 1, TimeUnit.SECONDS);
+            threadPool.shutdown();
         }
     }
 }
