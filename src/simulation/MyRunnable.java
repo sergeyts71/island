@@ -8,9 +8,9 @@ public class MyRunnable implements Runnable {
             IslandMap islandMap = new IslandMap();
             Report report = new Report();
 
-            System.out.println(islandMap.getCell0());
-            islandMap.eat("Заяц");
-            System.out.println(islandMap.getCell0());
+//            System.out.println(islandMap.getCell());
+            islandMap.eat("Волк","Заяц");
+//            System.out.println(islandMap.getCell0());
         }
     }
 }
